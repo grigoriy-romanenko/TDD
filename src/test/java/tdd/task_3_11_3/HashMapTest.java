@@ -6,10 +6,7 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertNull;
-import static junit.framework.Assert.assertSame;
+import static org.junit.Assert.*;
 
 public class HashMapTest {
 
@@ -40,7 +37,7 @@ public class HashMapTest {
         String key = "key";
         map.put(key, 1);
         map.put(key, 2);
-        assertFalse(new Integer(1).equals(map.get(key)));
+        assertNotEquals(new Integer(1), map.get(key));
         assertEquals(new Integer(2), map.get(key));
     }
 
