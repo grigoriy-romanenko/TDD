@@ -25,7 +25,8 @@ public class HashMapTest {
     public void shouldRetrieveStoredValue() {
         Integer valueToSave = 1;
         map.put("one", valueToSave);
-        assertSame(valueToSave, map.get("one"));
+        assertSame("Value cannot be retrieved after it was added",
+                valueToSave, map.get("one"));
     }
 
     /**
@@ -37,8 +38,8 @@ public class HashMapTest {
         String key = "key";
         map.put(key, 1);
         map.put(key, 2);
-        assertNotEquals(new Integer(1), map.get(key));
-        assertEquals(new Integer(2), map.get(key));
+        assertEquals("Old value was not replaced",
+                new Integer(2), map.get(key));
     }
 
     /**
@@ -49,8 +50,8 @@ public class HashMapTest {
         String key = "key";
         map.put(key, 1);
         map.clear();
-        assertNull(map.get(key));
-        assertEquals(map.size(), 0);
+        assertNull("Previously added value is not deleted", map.get(key));
+        assertEquals("Map is not empty", map.size(), 0);
     }
 
     /**
@@ -59,6 +60,7 @@ public class HashMapTest {
     @Test
     public void shouldAddElementWithNullKey() {
         map.put(null, 1);
-        assertEquals(new Integer(1), map.get(null));
+        assertEquals("Cannot put element with null key",
+                new Integer(1), map.get(null));
     }
 }
