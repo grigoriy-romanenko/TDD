@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 @RunWith(JUnitParamsRunner.class)
@@ -58,5 +60,11 @@ public class BookingSystemTest {
     @Parameters(method = "getInvalidPeriods")
     public void shouldRejectInvalidPeriod(int start, int end) {
         bookingSystem.reserve(start, end);
+    }
+
+    @Test
+    public void shouldReturnBookedHours() {
+        bookingSystem.reserve(10, 13);
+        assertEquals(Arrays.asList(10, 11, 12), bookingSystem.getBookedHours());
     }
 }
